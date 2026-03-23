@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="WorkoutTimers.App/WorkoutTimers.App.csproj" />
+  <Project Path="WorkoutTimers.lib/WorkoutTimers.lib.csproj" />
+</Solution>
