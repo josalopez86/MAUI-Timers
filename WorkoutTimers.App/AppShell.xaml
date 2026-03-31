@@ -7,19 +7,27 @@
     Title="WorkoutTimers.App"
     Shell.FlyoutBehavior="{OnIdiom Phone=Flyout, Default=Locked}">
 
-    <FlyoutItem Title="Regular Fly">
-        <ShellContent
-        Title="Regular"
-        ContentTemplate="{DataTemplate views:RegularIntervals}"
-        Route="RegularIntervals" />
+    <FlyoutItem Title="Intervals">
+        <Tab Title="Regular">
+            <ShellContent
+            Title="Regular"
+            ContentTemplate="{DataTemplate views:RegularIntervals}" 
+            Route="RegularIntervals"/>
+        </Tab>
+        
+        <Tab Title="Staggered">
+                <ShellContent
+                Title="Staggered"
+                ContentTemplate="{DataTemplate views:StaggeredIntervals}" 
+                Route="StaggeredIntervals"/>
+        </Tab>
     </FlyoutItem>
+    
+    <ShellContent
+        Title="Run Example"
+        ContentTemplate="{DataTemplate views:RunInterval}"
+        Route="RunInterval"/>
 
-    <FlyoutItem Title="Staggered Fly">
-        <ShellContent
-        Title="Staggered"
-        ContentTemplate="{DataTemplate views:StaggeredIntervals}"
-        Route="StaggeredIntervals" />
-    </FlyoutItem>
 
     <MenuItem Text="Settings" Command="{Binding NavigateToSettingsCommand}"/>
     

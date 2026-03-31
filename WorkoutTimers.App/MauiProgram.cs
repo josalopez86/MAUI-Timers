@@ -19,16 +19,18 @@ namespace WorkoutTimers.App
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 })
                 .Services.AddSingleton<IIntervalService, InMemoryIntervalService>()
-                .AddSingleton<RegularIntervalModel>()
-                .AddTransient<NewRegularIntervalModel>()
-                .AddSingleton<StaggeredIntervalModel>()
+                .AddSingleton<RegularIntervalsModel>()
+                //.AddTransient<NewRegularIntervalModel>()
+                //.AddSingleton<StaggeredIntervalModel>()
+                .AddSingleton<StaggeredIntervalsModel>()
                 .AddTransient<NewStaggeredIntervalModel>()
                 .AddSingleton<SettingsModel>()
                 .AddSingleton<StaggeredIntervals>()
                 .AddSingleton<RegularIntervals>()
                 .AddTransient<NewStaggeredInterval>()
                 .AddTransient<NewRegularInterval>()
-                .AddSingleton<Settings>();
+                .AddSingleton<Settings>()
+                .AddSingleton<NewContentPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();

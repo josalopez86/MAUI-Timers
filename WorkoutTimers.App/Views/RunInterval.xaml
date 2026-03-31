@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WorkoutTimers.App.Views.RunInterval"
              Title="RunInterval">
-     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <AbsoluteLayout>
+        <Button Text="Start" AbsoluteLayout.LayoutBounds="4, 4, .25, 50" AbsoluteLayout.LayoutFlags="WidthProportional"/>
+        <Button Text="Stop" AbsoluteLayout.LayoutBounds="105, 4, .25, 50" AbsoluteLayout.LayoutFlags="WidthProportional"/>
+        <Label Text="Elapsed Time:" AbsoluteLayout.LayoutBounds="4, 60, 200, 50"/>
+        <Rectangle Background="White" AbsoluteLayout.LayoutBounds="40, 125, 5, 100"/>
+        <Rectangle Background="White" AbsoluteLayout.LayoutBounds="35, 215, 100, 5"/>
+    </AbsoluteLayout>
 </ContentPage>

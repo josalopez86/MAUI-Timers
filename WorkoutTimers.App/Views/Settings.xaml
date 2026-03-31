@@ -3,10 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WorkoutTimers.App.Views.Settings"
              Title="Settings">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <TableView Intent="Settings">
+        <TableRoot>
+            <TableSection Title="Defaults">
+                <EntryCell Label="Interval" Placeholder="00:00"/>
+                <EntryCell Label="Repetitions" Keyboard="Numeric" Text="1"/>
+            </TableSection>
+            <TableSection Title="Addresses">
+                <EntryCell Label="Server URL" Keyboard="Url"/>
+                <EntryCell Label="User email" Keyboard="Email"/>
+
+            </TableSection>
+
+        </TableRoot>
+        
+    </TableView>
 </ContentPage>
