@@ -2,12 +2,27 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WorkoutTimers.App.Views.RegularIntervals"
-             Title="Regular Intervals">
+             Title="Regular Intervals"
+             xmlns:lib="clr-namespace:WorkoutTimers.Lib.ViewModels;assembly=WorkoutTimers.lib"
+             x:DataType="{x:Type lib:RegularIntervalsModel}">
     <StackLayout Orientation="Vertical">
         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
             <Label Text="Intervals"/>
             <Button Text="+" Command="{Binding AddIntervalCommand}"/>
         </StackLayout>
-        <Label Text="Next Item"/>
+        <CollectionView ItemsSource="{Binding Intervals}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="{OnPlatform Default=2, WinUI=3}" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type lib:RegularIntervalModel}">
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Name}"/>
+                        <Label Text="{Binding Repetitions}"/>
+                        <Label Text="{Binding Duration}"/>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </StackLayout>
 </ContentPage>

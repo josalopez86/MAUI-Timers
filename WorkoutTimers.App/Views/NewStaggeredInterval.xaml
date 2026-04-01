@@ -2,7 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WorkoutTimers.App.Views.NewStaggeredInterval"
-             Title="New Staggered Interval">
+             Title="New Staggered Interval"
+             xmlns:lib="clr-namespace:WorkoutTimers.Lib.ViewModels;assembly=WorkoutTimers.lib"
+             x:DataType="{x:Type lib:NewStaggeredIntervalModel}"
+             xmlns:converters="clr-namespace:WorkoutTimers.App.Converters"
+             >
     <!--<FlexLayout Direction="Column" JustifyContent="SpaceBetween" AlignContent="Center">
         <Label Text="Name:"/>
         <Label Text="Repitations:"/>
@@ -15,38 +19,43 @@
         <Button Text="Add Duration"/>
         <Button Text="Save"/>
     </FlexLayout>-->
-    <Grid>
+    <Grid Margin="5" RowSpacing="5">
+        <Grid.Resources>
+            <converters:TimeSpanConverter x:Key="durationConverter"/>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         
         <Label Text="Name" VerticalTextAlignment="Center"/>
-        <Entry Placeholder="Name" Grid.Column="1"/>
+        <Entry Text="{Binding Model.Name, Mode=TwoWay}" Placeholder="Name" Grid.Column="1"/>
         
         <Label Text="Repetitions" Grid.Row="1" VerticalTextAlignment="Center"/>
-        <Entry Placeholder="Repetitions" Grid.Row="1" Grid.Column="1"/>
+        <Entry Text="{Binding Model.Repetitions, Mode=TwoWay}" Placeholder="Repetitions" Grid.Row="1" Grid.Column="1"/>
 
         <Label Text="Durations" Grid.Row="2" VerticalTextAlignment="Center"/>
-        <Entry Placeholder="Durations" Grid.Row="2" Grid.Column="1" />
-
         <Border Stroke="Gray" Grid.Row="3" Grid.ColumnSpan="2">
-            <CollectionView>
+            <CollectionView ItemsSource="{Binding Model.Durations}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="{x:Type lib:IntervalDuration}">
+                        <Entry Placeholder="00:00" Text="{Binding Duration, Mode=TwoWay, Converter={StaticResource Key=durationConverter}, ConverterParameter='mm\\:ss'}"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
 
             </CollectionView>
         </Border>
-
-        <HorizontalStackLayout Grid.Row="4" Grid.ColumnSpan="2" Spacing="10" HorizontalOptions="Center">
-            <Button Text="Add Duration" HorizontalOptions="FillAndExpand"  />
-            <Button Text="Save" HorizontalOptions="FillAndExpand"/>
-        </HorizontalStackLayout>
+            <Button Text="Add Duration" Command="{Binding NewDurationCommand}" Grid.ColumnSpan="2" Grid.Row="4" HorizontalOptions="Center"  />
+        <Button Text="Save" Command="{Binding SaveIntervalCommand}" Grid.ColumnSpan="2" Grid.Row="5" HorizontalOptions="Center"/>
+        
 
     </Grid>
 </ContentPage>

@@ -17,20 +17,61 @@ namespace WorkoutTimers.Lib.Services
         {
             _intervals.Add(new RegularIntervalModel
             {
-                Name = "Example",
+                Name = "Example fifth",
                 Duration = TimeSpan.FromMinutes(1),
                 Repetitions = 5
+            });
+            _intervals.Add(new RegularIntervalModel
+            {
+                Name = "Example fourth",
+                Duration = TimeSpan.FromMinutes(15),
+                Repetitions = 4
+            });
+            _intervals.Add(new RegularIntervalModel
+            {
+                Name = "Example third",
+                Duration = TimeSpan.FromMinutes(6),
+                Repetitions = 3
+            });
+            _intervals.Add(new RegularIntervalModel
+            {
+                Name = "Example second",
+                Duration = TimeSpan.FromMinutes(18),
+                Repetitions = 2
             });
 
             _staggereds.Add(new StaggeredIntervalModel
             {
                 Name = "Staggered 1",
                 Repetitions = 1,
-                Durations = new ObservableCollection<TimeSpan>
+                Durations = new ObservableCollection<IntervalDuration>
                 {
-                    TimeSpan.FromMinutes(1),
-                    TimeSpan.FromSeconds(30),
-                    TimeSpan.FromMinutes(1)
+                    new IntervalDuration {Duration = TimeSpan.FromMinutes(1) },
+                    new IntervalDuration {Duration = TimeSpan.FromSeconds(30) },
+                    new IntervalDuration {Duration = TimeSpan.FromMinutes(1) }
+                }
+            });
+            _staggereds.Add(new StaggeredIntervalModel
+            {
+                Name = "Staggered 2",
+                Repetitions = 2,
+                Durations = new ObservableCollection<IntervalDuration>
+                {
+                    new IntervalDuration {Duration = TimeSpan.FromMinutes(2) },
+                    new IntervalDuration {Duration = TimeSpan.FromSeconds(32) },
+                    new IntervalDuration {Duration = TimeSpan.FromMinutes(2)
+            }
+                }
+            });
+            _staggereds.Add(new StaggeredIntervalModel
+            {
+                Name = "Staggered 3",
+                Repetitions = 3,
+                Durations = new ObservableCollection<IntervalDuration>
+                {
+                    new IntervalDuration {Duration = TimeSpan.FromMinutes(3) },
+                    new IntervalDuration {Duration = TimeSpan.FromSeconds(33) },
+                    new IntervalDuration {Duration = TimeSpan.FromMinutes(3) }
                 }
             });
         }

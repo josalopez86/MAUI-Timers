@@ -24,7 +24,7 @@ namespace WorkoutTimers.Lib.ViewModels
             });
 
             NewDurationCommand = new Command(() => {
-                Model.Durations.Add(TimeSpan.FromSeconds(30));
+                Model.Durations.Add( new IntervalDuration { Duration = TimeSpan.FromSeconds(30) });
             });
         }
 
