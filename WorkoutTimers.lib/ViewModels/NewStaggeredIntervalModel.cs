@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using WorkoutTimers.Lib.Services;
+using CommunityToolkit.Mvvm.Messaging;
 
 namespace WorkoutTimers.Lib.ViewModels
 {
@@ -19,7 +20,7 @@ namespace WorkoutTimers.Lib.ViewModels
 
             SaveIntervalCommand = new Command(() => {
                 _intervalService.AddStaggeredIntervalModel(Model);
-                //MessagingCenter.Instance.Send<NewStaggeredIntervalModel, StaggeredIntervalModel>(this, "NewInterval", Model);
+                WeakReferenceMessenger.Default.Send<StaggeredIntervalModel>(Model);
                 (Application.Current.MainPage as Shell).SendBackButtonPressed();
             });
 

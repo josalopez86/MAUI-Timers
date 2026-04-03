@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -30,6 +31,16 @@ namespace WorkoutTimers.Lib.ViewModels
             //MessagingCenter.Instance.Subscribe<NewStaggeredIntervalModel, StaggeredIntervalModel>(this, "NewInterval", (source, newInterval) => {
             //    this.Intervals.Add(newInterval);
             //});
+            WeakReferenceMessenger.Default.Register<StaggeredIntervalModel>(this, (r, m) =>
+            {
+                //var model = m;
+                // hacer algo con el modelo
+
+                Intervals.Add(new StaggeredIntervalModel {
+                Durations = m.Durations, 
+                Name = m.Name,
+                Repetitions = m.Repetitions});
+            });
         }
         public ObservableCollection<StaggeredIntervalModel> Intervals { get; set; }  = new ObservableCollection<StaggeredIntervalModel>();
 

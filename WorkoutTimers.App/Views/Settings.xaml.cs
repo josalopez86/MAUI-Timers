@@ -3,15 +3,19 @@ namespace WorkoutTimers.App.Views;
 //[QueryProperty(nameof(Message), nameof(Message))]
 public partial class Settings : ContentPage
 {
-	//public string Message
-	//{
-	//	get { return msgLabel?.Text; }
-	//	set { msgLabel.Text = value; }
- //   }
+	private string _msg;
+	public string Message
+	{
+		get { return _msg; }
+		set { _msg = value;
+				OnPropertyChanged(nameof(Message));
+			}
+	}
 
-    public Settings()
+	public Settings()
 	{
 		InitializeComponent();
+		BindingContext = this;
 	}
 
 }

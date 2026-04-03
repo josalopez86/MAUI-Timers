@@ -2,11 +2,27 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WorkoutTimers.App.Views.StaggeredIntervals"
-             Title="Staggered Intervals">
+             Title="Staggered Intervals"
+             xmlns:lib="clr-namespace:WorkoutTimers.Lib.ViewModels;assembly=WorkoutTimers.lib"
+             x:DataType="{x:Type lib:StaggeredIntervalsModel}">
      <VerticalStackLayout>
         <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
             <Label Text="Intervals"/>
             <Button Text="+" Command="{Binding AddIntervalCommand}"/>
         </HorizontalStackLayout>
+        <CollectionView ItemsSource="{Binding Intervals}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="{OnPlatform Default=2, WinUI=3}" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type lib:StaggeredIntervalModel}">
+                    <VerticalStackLayout>
+                        <Label Text="{Binding Name}"/>
+                        <Label Text="{Binding Repetitions, StringFormat='Reps: {0}'}"/>
+                        <Label Text="{Binding TotalDuration, StringFormat='Total time: {0:c}'}"/>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>
