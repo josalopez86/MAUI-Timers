@@ -2,17 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WorkoutTimers.App.Views.Settings"
-             Title="Settings">
+             Title="Settings"
+             xmlns:lib="clr-namespace:WorkoutTimers.Lib.ViewModels;assembly=WorkoutTimers.lib"
+            x:DataType="{x:Type lib:SettingsModel}">
     <TableView Intent="Settings">
         <TableRoot>
             <TableSection Title="Defaults">
                 <EntryCell Label="Interval" Placeholder="00:00"/>
-                <EntryCell Label="Repetitions" Keyboard="Numeric" Text="1"/>
+                <EntryCell Label="Repetitions" Keyboard="Numeric" Text="{Binding DefaultReps}"/>
             </TableSection>
             <TableSection Title="Addresses">
                 <EntryCell Label="Server URL" Keyboard="Url"/>
-                <EntryCell Label="User email" Keyboard="Email"/>
-
+                <EntryCell Label="User email" Keyboard="Email" Text="{Binding DefaultReps}"/>
+            </TableSection>
+            <TableSection Title="OS Info">
+                <TextCell Text="{Binding OSVersion}"/>
             </TableSection>
 
         </TableRoot>

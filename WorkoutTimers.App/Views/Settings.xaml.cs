@@ -1,3 +1,5 @@
+using WorkoutTimers.Lib.ViewModels;
+
 namespace WorkoutTimers.App.Views;
 
 //[QueryProperty(nameof(Message), nameof(Message))]
@@ -12,10 +14,10 @@ public partial class Settings : ContentPage
 			}
 	}
 
-	public Settings()
+	public Settings(SettingsModel model)
 	{
 		InitializeComponent();
-		BindingContext = this;
+		BindingContext = model;
 	}
 
 }
